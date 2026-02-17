@@ -68,4 +68,3 @@ try:
 except ValueError as e:
     print(f"min_temp: {e}")
 print(f"Фаренгейты: {sensor1.temp_fahrenheit} °F")
-    
