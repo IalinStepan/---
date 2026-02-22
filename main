@@ -21,7 +21,10 @@ class TemperatureSensor:
     @min_temp.setter
     def min_temp(self, value):
         if -273 <= value <= 1000:
-            self.__min_temp = value
+            if value < self.__max_temp:
+                self.__min_temp = value
+            else:
+                raise ValueError("Минимум должен быть меньше максимума")
         else:
             raise ValueError("Неправильная температура")
     
@@ -54,17 +57,13 @@ class TemperatureSensor:
         return ((self.max_temp + self.min_temp)/2 * 9 / 5) + 32
     
     def info(self):
-        print(f"Датчик {self.__sensor_id} (тип {self.__type}): диапазон {self.__min_temp}..{self.__max_temp} °C, точность ±{self.__accuracy} °C")
+        print(f"Датчик {self.__sensor_id} (тип {self.__type}): диапазон {self.__min_temp}..{self.__max_temp} °C, точность ±{self.__accuracy} °C, {self.temp_fahrenheit} °F")
 
 
 sensor1 = TemperatureSensor("1", 1, -50, 150, 0.5)
-sensor2 = TemperatureSensor("2", 2, 0, 350, 1)
-sensor3 = TemperatureSensor("3", 3, 20, 550, 2.5)
 sensor1.info()
-sensor2.info()
-sensor3.info()
 try:
-    sensor1.min_temp = 2000
+    sensor1.min_temp = 200
 except ValueError as e:
     print(f"min_temp: {e}")
-print(f"Фаренгейты: {sensor1.temp_fahrenheit} °F")
+print(f"sensor_id: {sensor1.sensor_id}, type: {sensor1.type}, min_temp: {sensor1.min_temp}, max_temp: {sensor1.max_temp}, accuracy: {sensor1.accuracy}")
