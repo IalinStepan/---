@@ -60,10 +60,12 @@ class TemperatureSensor:
         print(f"Датчик {self.__sensor_id} (тип {self.__type}): диапазон {self.__min_temp}..{self.__max_temp} °C, точность ±{self.__accuracy} °C, {self.temp_fahrenheit} °F")
 
 
-sensor1 = TemperatureSensor("1", 1, -50, 150, 0.5)
-sensor1.info()
+TemperatureSensor1 = TemperatureSensor("1", 1, 150, 350, 7)
+TemperatureSensor2 = TemperatureSensor("2", 2, 250, 450, 6)
+TemperatureSensor3 = TemperatureSensor("3", 3, 350, 550, 5)
+TemperatureSensor1.info()
 try:
-    sensor1.min_temp = 200
+    TemperatureSensor1.min_temp = 20000
 except ValueError as e:
     print(f"min_temp: {e}")
-print(f"sensor_id: {sensor1.sensor_id}, type: {sensor1.type}, min_temp: {sensor1.min_temp}, max_temp: {sensor1.max_temp}, accuracy: {sensor1.accuracy}")
+print(f"sensor_id: {TemperatureSensor1.sensor_id}, type: {TemperatureSensor1.type}, min_temp: {TemperatureSensor1.min_temp}, max_temp: {TemperatureSensor1.max_temp}, accuracy: {TemperatureSensor1.accuracy}")
